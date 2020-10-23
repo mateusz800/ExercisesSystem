@@ -1,0 +1,5 @@
+rootProject.name = 'inzynierka_api'
+
+include 'domain'
+include 'userMicroservice'
+include 'teacherMicroservice'
