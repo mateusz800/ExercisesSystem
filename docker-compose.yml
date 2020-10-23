@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: math_db
+    build:
+      context: ./docker
+      dockerfile: db_dockerfile
+    restart: always
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: bVhDX2XcgwEatQ6djUNKLm786wguSjpm
+    ports:
+      - 5433:5432
