@@ -1,26 +1,41 @@
-plugins {
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
+buildscript {
+	ext { springBootVersion = '2.3.0.RELEASE' }
+	repositories { mavenCentral() }
+	dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-repositories {
-	mavenCentral()
+jar {
+	enabled = true
 }
+
+sourceCompatibility = 1.11
+group 'com.example'
+version '1.0'
+repositories { mavenCentral() }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.projectlombok:lombok:1.18.16'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	//compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-mail')
+	compile("org.springframework.boot:spring-boot-starter-validation")
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile("com.h2database:h2")
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	compile group: 'org.json', name: 'json', version: '20180813'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.13'
+	testCompile('org.springframework.security:spring-security-test')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.boot:spring-boot-test-autoconfigure')
 }
 
-test {
-	useJUnitPlatform()
+
+dependencyManagement {
+	imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
+

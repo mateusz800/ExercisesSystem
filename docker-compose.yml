@@ -12,3 +12,14 @@ services:
       POSTGRES_PASSWORD: bVhDX2XcgwEatQ6djUNKLm786wguSjpm
     ports:
       - 5433:5432
+
+  user:
+    container_name: math_user_api
+    build:
+      context: ./docker
+      dockerfile: user_dockerfile
+    restart: always
+    depends_on:
+      - "db"
+    ports:
+      - 8125:8080

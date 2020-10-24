@@ -1,1 +1,7 @@
 docker/dist
+
+.gradle
+
+domain/build
+userMicroservice/build
+teacherMicroservice/build
