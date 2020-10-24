@@ -17,7 +17,8 @@ CREATE SCHEMA IF NOT EXISTS math;
 -- ------------------------------------------
 CREATE TABLE IF NOT EXISTS math.topic (
     name TEXT PRIMARY KEY,
-    "desc" TEXT
+    "desc" TEXT,
+    image TEXT
 );
 
 END;

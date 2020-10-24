@@ -13,6 +13,9 @@ public class Topic {
     @Column(name="desc")
     private String desc;
 
+    @Column(name="image")
+    private String image;
+
     public Topic(){
 
     }
@@ -27,6 +30,9 @@ public class Topic {
     }
     public String getDesc(){
         return this.desc;
+    }
+    public String getImage(){
+        return this.image;
     }
 
 }

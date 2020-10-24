@@ -24,7 +24,9 @@ public class TopicController {
         Page<GetTopicsResponse> response = topics
                 .map(topic -> new GetTopicsResponse(
                         topic.getName(),
-                        topic.getDesc()));
+                        topic.getDesc(),
+                        topic.getImage()
+                ));
         return response;
     }
 }
