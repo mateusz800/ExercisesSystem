@@ -90,6 +90,45 @@ GET@/topics
 }
 \end{lstlisting}
 
+## Funkcje dotyczące ćwiczeń
 
+### Pobieranie listy ćwiczeń
+
+\textbf{Podsumowanie}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{10cm}@{}}
+\toprule
+\endhead
+
+\textbf{Metoda}					& GET										\tabularnewline \hline
+\textbf{Endpoint}				& /exercises									\tabularnewline \hline
+\textbf{Opis}					& Zwraca listę zadań			\tabularnewline \hline
+\textbf{Dostęp}					& Bez autoryzacji							\tabularnewline \hline
+\textbf{Zwracane kody}	& -											\tabularnewline
+\bottomrule
+\end{longtable}
+\end{small}
+				
+\textbf{Parametry wejściowe}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{6cm}p{37mm}@{}}
+\toprule
+\endhead
+
+\textbf{Nazwa} 		& \textbf{Opis} 		& \textbf{Restrykcje} 	\tabularnewline \bottomrule
+topic				&  Nazwa tematyki, której mają dotyczyć ćwiczenia		&			-				\tabularnewline
+	
+
+\bottomrule
+\end{longtable}
+\end{small}
+
+\textbf{Przykładowe żądanie}
+
+\begin{lstlisting}[backgroundcolor=\color{gray},frame=single,basicstyle=\ttfamily]
+GET@/exercises?topic=trygonometria
+\end{lstlisting}
 
 
