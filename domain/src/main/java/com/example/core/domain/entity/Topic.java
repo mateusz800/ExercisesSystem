@@ -35,4 +35,7 @@ public class Topic {
         return this.image;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

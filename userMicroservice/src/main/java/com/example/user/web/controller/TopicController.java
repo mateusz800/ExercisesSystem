@@ -1,6 +1,6 @@
 package com.example.user.web.controller;
 
-import com.example.core.domain.dto.GetTopicsResponse;
+import com.example.core.domain.dto.GetTopicListDto;
 import com.example.core.domain.entity.Topic;
 import com.example.core.domain.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ public class TopicController {
     public Page<?> getTopics(@PageableDefault(page = 0, size = 20) @SortDefault.SortDefaults({
             @SortDefault(sort = "name", direction = Sort.Direction.ASC)}) Pageable pageable) {
         Page<Topic> topics = topicService.findAll(pageable);
-        Page<GetTopicsResponse> response = topics
-                .map(topic -> new GetTopicsResponse(
+        Page<GetTopicListDto> response = topics
+                .map(topic -> new GetTopicListDto(
                         topic.getName(),
                         topic.getDesc(),
                         topic.getImage()

@@ -20,5 +20,16 @@ CREATE TABLE IF NOT EXISTS math.topic (
     "desc" TEXT,
     image TEXT
 );
+-- ------------------------------------------
+-- Table math.exercise
+-- ------------------------------------------
+CREATE TABLE IF NOT EXISTS math.exercise (
+    id SERIAL PRIMARY KEY,
+    question TEXT NOT NULL UNIQUE,
+    correct_answer TEXT NOT NULL,
+    other_answers JSON,
+    topic_name TEXT REFERENCES math.topic(name),
+    solution TEXT
+);
 
 END;
