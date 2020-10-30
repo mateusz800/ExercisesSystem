@@ -22,10 +22,10 @@ public class ExerciseController {
     @GetMapping(path = "/exercises")
     public Page<?> getTopics(@PageableDefault(page = 0, size = 20) @SortDefault.SortDefaults({
             @SortDefault(sort = "id", direction = Sort.Direction.ASC)}) Pageable pageable, @Valid GetExerciseListDto inputDto) {
-        // Page<Exercise> exercises = exerciseService.findAll(pageable);
         Page<Exercise> exercises = exerciseService.filter(inputDto, pageable);
         Page<GetExerciseListDto> response = exercises
                 .map(exercise -> new GetExerciseListDto(
+                        exercise.getId(),
                         exercise.getQuestion(),
                         exercise.getCorrectAnswer(),
                         exercise.getOtherAnswers(),

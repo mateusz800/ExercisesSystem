@@ -51,4 +51,8 @@ public class Exercise {
     public void setTopic(Topic topic) {
         this.topic = topic;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
