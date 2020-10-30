@@ -7,15 +7,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name="user", schema = "math")
 public class User implements UserDetails {
     @Id
     @Column(name="email")
-    private String email;
+    private String login;
 
     @Column(name="password")
     private String password;
@@ -23,15 +25,17 @@ public class User implements UserDetails {
     @Column(name="first_name")
     private String firstName;
 
+    public User(){}
+
     public User(String email, String password){
-        this.email = email;
+        this.login = email;
         this.password = password;
     }
-    public void setEmail(String email){
-        this.email = email;
+    public void setLogin(String email){
+        this.login = email;
     }
-    public String getEmail(){
-        return email;
+    public String getLogin(){
+        return login;
     }
 
     @Override
@@ -45,9 +49,13 @@ public class User implements UserDetails {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
-        return email;
+        return login;
     }
 
     @Override
@@ -69,4 +77,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

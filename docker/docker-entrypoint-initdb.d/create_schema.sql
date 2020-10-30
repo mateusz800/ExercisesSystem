@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS math.exercise (
 -- ------------------------------------------
 CREATE TABLE IF NOT EXISTS math.user (
     email VARCHAR(50) PRIMARY KEY,
-    password VARCHAR(30) NOT NULL,
+    password TEXT NOT NULL,
     first_name VARCHAR(30)
 );
 

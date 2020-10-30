@@ -33,7 +33,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             User credentials = new ObjectMapper().readValue(req.getInputStream(), User.class);
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            credentials.getEmail(),
+                            credentials.getLogin(),
                             credentials.getPassword(),
                             new ArrayList<>())
             );
@@ -48,7 +48,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
        Date expirationDate = new Date(System.currentTimeMillis() + JWTSecurityConfiguration.EXPIRATION_INTERVAL);
        User user = (User) authResult.getPrincipal();
        String token = Jwts.builder()
-               .setSubject(user.getEmail())
+               .setSubject(user.getLogin())
                .setExpiration(expirationDate)
                .signWith(SignatureAlgorithm.ES512, Configuration.getAuthKey().getBytes(StandardCharsets.UTF_8))
                .compact();

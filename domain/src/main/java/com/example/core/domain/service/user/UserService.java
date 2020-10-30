@@ -6,6 +6,7 @@ import com.example.core.domain.exception.UserAlreadyExistsException;
 import com.example.core.domain.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +26,10 @@ public class UserService implements IUserService {
         if (user.isPresent()) {
             throw new UserAlreadyExistsException();
         } else {
-            User userEntity = new User(dto.getEmail(), dto.getPassword());
+            User userEntity = new User();
+            userEntity.setLogin(dto.getEmail());
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
             userRepository.save(userEntity);
         }
 

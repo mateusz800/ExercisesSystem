@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends CrudRepository<User, String> {
 
-    @Query(value="SELECT * FROM math.user WHERE email = ?", nativeQuery = true)
+    @Query(value="SELECT * FROM math.user WHERE email = ? ", nativeQuery = true)
     Optional<User> findByEmail(String email);
 }
