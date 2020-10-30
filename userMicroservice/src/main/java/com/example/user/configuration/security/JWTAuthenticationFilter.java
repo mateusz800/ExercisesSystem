@@ -1,7 +1,7 @@
 package com.example.user.configuration.security;
 
+import com.example.core.domain.configuration.Configuration;
 import com.example.core.domain.entity.User;
-import com.example.core.domain.repository.SystemConfigRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,12 +21,10 @@ import java.util.Date;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
-    private SystemConfigRepository systemConfigRepository;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, SystemConfigRepository systemConfigRepository) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         setFilterProcessesUrl("/login");
         this.authenticationManager = authenticationManager;
-        this.systemConfigRepository = systemConfigRepository;
     }
 
     @Override
@@ -52,7 +50,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
        String token = Jwts.builder()
                .setSubject(user.getEmail())
                .setExpiration(expirationDate)
-               .signWith(SignatureAlgorithm.ES512, systemConfigRepository.getParam("AUTH_KEY").getValue().getBytes(StandardCharsets.UTF_8))
+               .signWith(SignatureAlgorithm.ES512, Configuration.getAuthKey().getBytes(StandardCharsets.UTF_8))
                .compact();
        resp.addHeader("Access-Control-Expose-Headers", JWTSecurityConfiguration.TOKEN_NAME);
        resp.addHeader("jwt", token);

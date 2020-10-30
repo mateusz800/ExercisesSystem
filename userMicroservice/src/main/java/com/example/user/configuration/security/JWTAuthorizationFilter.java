@@ -1,6 +1,6 @@
 package com.example.user.configuration.security;
 
-import com.example.core.domain.repository.SystemConfigRepository;
+import com.example.core.domain.configuration.Configuration;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-    private final SystemConfigRepository systemConfigRepository;
 
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager, SystemConfigRepository systemConfigRepository) {
+    public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
-        this.systemConfigRepository = systemConfigRepository;
     }
 
     @Override
@@ -56,7 +54,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         if (token != null) {
             user = Jwts
                     .parser()
-                    .setSigningKey(systemConfigRepository.getParam("AUTH_KEY").getValue().getBytes(StandardCharsets.UTF_8))
+                    .setSigningKey(Configuration.getAuthKey().getBytes(StandardCharsets.UTF_8))
                     .parseClaimsJws(token.replace(JWTSecurityConfiguration.TOKEN_PREFIX, ""))
                     .getBody()
                     .getSubject();
@@ -64,7 +62,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             if (user != null) {
                 expirationDate = Jwts
                         .parser()
-                        .setSigningKey(systemConfigRepository.getParam("AUTH_KEY").getValue().getBytes(StandardCharsets.UTF_8))
+                        .setSigningKey(Configuration.getAuthKey().getBytes(StandardCharsets.UTF_8))
                         .parseClaimsJws(token.replace(JWTSecurityConfiguration.TOKEN_PREFIX, ""))
                         .getBody()
                         .getExpiration();
