@@ -1,6 +1,7 @@
 docker/dist
 
 .gradle
+.idea
 
 domain/build
 userMicroservice/build
