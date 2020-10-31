@@ -44,10 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // allow unauthorized
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/images/course/*.png").permitAll()
 
-                // TODO: remove endpoints below
-                .antMatchers(HttpMethod.GET, "/topics").permitAll()
-                .antMatchers(HttpMethod.GET, "/exercises").permitAll()
 
                 .anyRequest().authenticated();
 
