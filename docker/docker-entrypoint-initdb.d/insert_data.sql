@@ -9,5 +9,5 @@ INSERT INTO math.course (name, "desc", image) VALUES ('ułamki', 'Jakis opis', '
 INSERT INTO math.course (name, "desc", image) VALUES ('funkcje', 'Jakis opis', 'http://192.168.1.69:8125/images/course/functions.png');
 
 -- exercises
-INSERT INTO math.exercise (question, correct_answers, incorrectgit _answers, topic_name, solution)
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, topic_name, solution)
     VALUES ('Jakieś pytanie', '{ "data":[{"answer":"poprawna odpowiedź"}]}', '{ "data":[{"answer":"odpowiedz 1, z przecinkiem"},{"answer":"odpowiedz 2"}]}', 'trygonometria', NULL);
