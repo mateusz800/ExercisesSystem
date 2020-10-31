@@ -2,7 +2,7 @@ package com.example.user.web.controller;
 
 import com.example.core.domain.dto.GetCoursesListDto;
 import com.example.core.domain.entity.Course;
-import com.example.core.domain.service.TopicService;
+import com.example.core.domain.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TopicController {
+public class CourseController {
     @Autowired
-    private TopicService topicService;
+    private CourseService courseService;
 
-    @GetMapping(path = "/topics")
+    @GetMapping(path = "/courses")
     public Page<?> getTopics(@PageableDefault(page = 0, size = 20) @SortDefault.SortDefaults({
             @SortDefault(sort = "name", direction = Sort.Direction.ASC)}) Pageable pageable) {
-        Page<Course> topics = topicService.findAll(pageable);
-        Page<GetCoursesListDto> response = topics
-                .map(topic -> new GetCoursesListDto(
-                        topic.getName(),
-                        topic.getDesc(),
-                        topic.getImage()
+        Page<Course> courses = courseService.findAll(pageable);
+        Page<GetCoursesListDto> response = courses
+                .map(course -> new GetCoursesListDto(
+                        course.getName(),
+                        course.getDesc(),
+                        course.getImage()
                 ));
         return response;
     }

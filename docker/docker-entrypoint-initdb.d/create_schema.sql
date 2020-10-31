@@ -13,9 +13,9 @@ DROP SCHEMA IF EXISTS math CASCADE;
 CREATE SCHEMA IF NOT EXISTS math;
 
 -- ------------------------------------------
--- Table math.topic
+-- Table math.course
 -- ------------------------------------------
-CREATE TABLE IF NOT EXISTS math.topic (
+CREATE TABLE IF NOT EXISTS math.course (
     name TEXT PRIMARY KEY,
     "desc" TEXT,
     image TEXT
@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS math.topic (
 CREATE TABLE IF NOT EXISTS math.exercise (
     id SERIAL PRIMARY KEY,
     question TEXT NOT NULL UNIQUE,
-    correct_answer TEXT NOT NULL,
-    other_answers JSON,
-    topic_name TEXT REFERENCES math.topic(name),
+    correct_answers JSON NOT NULL,
+    incorrect_answers JSON,
+    topic_name TEXT REFERENCES math.course(name),
     solution TEXT
 );
 

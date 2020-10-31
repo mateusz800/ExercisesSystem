@@ -6,32 +6,32 @@ import java.util.List;
 public class GetExerciseListDto {
     private Long id;
     private String question;
-    private String correctAnswer;
+    private List<String> correctAnswers;
     private List<String> otherAnswers;
-    private String topic;
+    private String course;
 
-    public GetExerciseListDto(Long id, String question, String correctAnswer, List<String> otherAnswers, String topic) {
+    public GetExerciseListDto(Long id, String question, List<String> correctAnswers, List<String> otherAnswers, String course) {
         this.id = id;
         this.question = question;
-        this.correctAnswer = correctAnswer;
+        this.correctAnswers = correctAnswers;
         this.otherAnswers = otherAnswers;
-        this.topic = topic;
+        this.course = course;
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public List<String> getCorrectAnswers() {
+        return correctAnswers;
     }
 
     public List<String> getOtherAnswers() {
         return otherAnswers;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getCourse() {
+        return course;
     }
 
     public Long getId() {

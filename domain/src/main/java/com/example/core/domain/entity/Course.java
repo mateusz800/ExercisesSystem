@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Topic {
+public class Course {
     @Id
     @Column(name="name", nullable = false)
     private String name;
@@ -16,11 +16,11 @@ public class Topic {
     @Column(name="image")
     private String image;
 
-    public Topic(){
+    public Course(){
 
     }
 
-    public Topic(String name, String desc){
+    public Course(String name, String desc){
         this.name = name;
         this.desc = desc;
     }

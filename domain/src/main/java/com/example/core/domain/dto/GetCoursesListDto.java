@@ -1,11 +1,11 @@
 package com.example.core.domain.dto;
 
-public class GetTopicListDto {
+public class GetCoursesListDto {
     private String name;
     private String desc;
     private String image;
 
-    public GetTopicListDto(String name, String desc, String image){
+    public GetCoursesListDto(String name, String desc, String image){
         this.name = name;
         this.desc = desc;
         this.image = image;

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class TopicService {
+public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 

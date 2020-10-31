@@ -27,9 +27,9 @@ public class ExerciseController {
                 .map(exercise -> new GetExerciseListDto(
                         exercise.getId(),
                         exercise.getQuestion(),
-                        exercise.getCorrectAnswer(),
-                        exercise.getOtherAnswers(),
-                        exercise.getTopic().getName()
+                        exercise.getCorrectAnswers(),
+                        exercise.getIncorrectAnswers(),
+                        exercise.getCourse().getName()
                 ));
         return response;
     }

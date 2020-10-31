@@ -59,7 +59,7 @@ GET@/topics
     {
       "name":"funkcje",
       "desc":"Jakis opis",
-      "image":"http://192.168.1.69:8125/images/topic/functions.png"
+      "image":"http://192.168.1.69:8125/images/course/functions.png"
     }
   ],
   "pageable":{
@@ -118,7 +118,7 @@ GET@/topics
 \endhead
 
 \textbf{Nazwa} 		& \textbf{Opis} 		& \textbf{Restrykcje} 	\tabularnewline \bottomrule
-topic				&  Nazwa tematyki, której mają dotyczyć ćwiczenia		&			-				\tabularnewline
+course				&  Nazwa tematyki, której mają dotyczyć ćwiczenia		&			-				\tabularnewline
 	
 
 \bottomrule
@@ -128,7 +128,7 @@ topic				&  Nazwa tematyki, której mają dotyczyć ćwiczenia		&			-				\tabula
 \textbf{Przykładowe żądanie}
 
 \begin{lstlisting}[backgroundcolor=\color{gray},frame=single,basicstyle=\ttfamily]
-GET@/exercises?topic=trygonometria
+GET@/exercises?course=trygonometria
 \end{lstlisting}
 
 
