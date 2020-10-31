@@ -11,6 +11,97 @@ papersize: a4
 
 # Specyfikacja funkcji
 
+## Funkcje dotyczące operacji użytkownika
+
+### Rejestracja
+
+\textbf{Podsumowanie}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{10cm}@{}}
+\toprule
+\endhead
+
+\textbf{Metoda}					& POST										\tabularnewline \hline
+\textbf{Endpoint}				& /register									\tabularnewline \hline
+\textbf{Opis}					& Pozwala na utworzenie nowego użytkownika			\tabularnewline \hline
+\textbf{Dostęp}					& Bez autoryzacji							\tabularnewline \hline
+\textbf{Zwracane kody}	& -											\tabularnewline
+\bottomrule
+\end{longtable}
+\end{small}
+				
+\textbf{Parametry wejściowe}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{6cm}p{37mm}@{}}
+\toprule
+\endhead
+
+\textbf{Nazwa} 		& \textbf{Opis} 		& \textbf{Restrykcje} 	\tabularnewline \bottomrule
+email				& adres email 		    &			-				\tabularnewline \hline
+password			& hasło użytkownika 	&			-				\tabularnewline
+
+\bottomrule
+\end{longtable}
+\end{small}
+
+\textbf{Przykładowe żądanie}
+
+\begin{lstlisting}[backgroundcolor=\color{gray},frame=single,basicstyle=\ttfamily]
+POST@/register
+{
+  "email": "test@gmail.com",
+  "password": "123123123" 
+}
+\end{lstlisting}
+
+
+### logowanie
+
+\textbf{Podsumowanie}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{10cm}@{}}
+\toprule
+\endhead
+
+\textbf{Metoda}					& POST										\tabularnewline \hline
+\textbf{Endpoint}				& /login								\tabularnewline \hline
+\textbf{Opis}					& Logowanie użytkownika, zwracany zostaje token jwt w nagłówku odpowiedzi HTTP			\tabularnewline \hline
+\textbf{Dostęp}					& Bez autoryzacji							\tabularnewline \hline
+\textbf{Zwracane kody}	& -											\tabularnewline
+\bottomrule
+\end{longtable}
+\end{small}
+				
+\textbf{Parametry wejściowe}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{6cm}p{37mm}@{}}
+\toprule
+\endhead
+
+\textbf{Nazwa} 		& \textbf{Opis} 		& \textbf{Restrykcje} 	\tabularnewline \bottomrule
+login				& adres email 		    &			-				\tabularnewline \hline
+password			& hasło użytkownika 	&			-				\tabularnewline
+
+\bottomrule
+\end{longtable}
+\end{small}
+
+\textbf{Przykładowe żądanie}
+
+\begin{lstlisting}[backgroundcolor=\color{gray},frame=single,basicstyle=\ttfamily]
+POST@/register
+{
+  "login": "test@gmail.com",
+  "password": "123123123" 
+}
+\end{lstlisting}
+
+
+
 ## Funkcje dotyczące zagadnień matematyki
 
 ### Pobieranie listy zagadnień
@@ -38,7 +129,7 @@ papersize: a4
 \toprule
 \endhead
 
-\textbf{Name} 		& \textbf{Description} 		& \textbf{Restrictions} 	\tabularnewline \bottomrule
+\textbf{Nazwa} 		& \textbf{Opis} 		& \textbf{Restrykcje} 	\tabularnewline \bottomrule
 				&  		&							\tabularnewline \hline
 			& 			&							\tabularnewline
 

@@ -31,5 +31,13 @@ CREATE TABLE IF NOT EXISTS math.exercise (
     topic_name TEXT REFERENCES math.course(name),
     solution TEXT
 );
+-- ------------------------------------------
+-- Table math.user
+-- ------------------------------------------
+CREATE TABLE IF NOT EXISTS math.user (
+    email VARCHAR(50) PRIMARY KEY,
+    password TEXT NOT NULL,
+    first_name VARCHAR(30)
+);
 
 END;
