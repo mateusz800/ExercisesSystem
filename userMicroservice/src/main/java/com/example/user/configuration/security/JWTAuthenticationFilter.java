@@ -31,28 +31,28 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse resp) throws AuthenticationException {
         try {
             User credentials = new ObjectMapper().readValue(req.getInputStream(), User.class);
-            return authenticationManager.authenticate(
+            Authentication test = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             credentials.getLogin(),
                             credentials.getPassword(),
-                            new ArrayList<>())
-            );
+                            new ArrayList<>()));
+            return test;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest req,HttpServletResponse resp, FilterChain chain,
+    protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse resp, FilterChain chain,
                                             Authentication authResult) throws IOException {
-       Date expirationDate = new Date(System.currentTimeMillis() + JWTSecurityConfiguration.EXPIRATION_INTERVAL);
-       User user = (User) authResult.getPrincipal();
-       String token = Jwts.builder()
-               .setSubject(user.getLogin())
-               .setExpiration(expirationDate)
-               .signWith(SignatureAlgorithm.ES512, Configuration.getAuthKey().getBytes(StandardCharsets.UTF_8))
-               .compact();
-       resp.addHeader("Access-Control-Expose-Headers", JWTSecurityConfiguration.TOKEN_NAME);
-       resp.addHeader("jwt", token);
+        Date expirationDate = new Date(System.currentTimeMillis() + JWTSecurityConfiguration.EXPIRATION_INTERVAL);
+        User user = (User) authResult.getPrincipal();
+        String token = Jwts.builder()
+                .setSubject(user.getLogin())
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.HS512, Configuration.getAuthKey().getBytes(StandardCharsets.UTF_8))
+                .compact();
+        resp.addHeader("Access-Control-Expose-Headers", JWTSecurityConfiguration.TOKEN_NAME);
+        resp.addHeader("jwt", token);
     }
 }
