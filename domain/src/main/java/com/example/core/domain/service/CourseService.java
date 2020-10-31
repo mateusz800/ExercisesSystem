@@ -1,7 +1,7 @@
 package com.example.core.domain.service;
 
-import com.example.core.domain.entity.Topic;
-import com.example.core.domain.repository.TopicRepository;
+import com.example.core.domain.entity.Course;
+import com.example.core.domain.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TopicService {
     @Autowired
-    private TopicRepository topicRepository;
+    private CourseRepository courseRepository;
 
     @Transactional(readOnly=true)
-    public Page<Topic> findAll(Pageable pageable){
-        return topicRepository.findAll(pageable);
+    public Page<Course> findAll(Pageable pageable){
+        return courseRepository.findAll(pageable);
     }
 }

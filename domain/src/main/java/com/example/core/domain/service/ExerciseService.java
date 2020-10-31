@@ -1,8 +1,8 @@
 package com.example.core.domain.service;
 
 import com.example.core.domain.dto.GetExerciseListDto;
+import com.example.core.domain.entity.Course;
 import com.example.core.domain.entity.Exercise;
-import com.example.core.domain.entity.Topic;
 import com.example.core.domain.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -19,10 +19,10 @@ public class ExerciseService {
 
     public Page<Exercise> filter(GetExerciseListDto input, Pageable pageable) {
         Exercise exercise = new Exercise();
-        if(input.getTopic() != null){
-            Topic topic = new Topic();
-            topic.setName(input.getTopic());
-            exercise.setTopic(topic);
+        if(input.getCourse() != null){
+            Course course = new Course();
+            course.setName(input.getCourse());
+            exercise.setCourse(course);
         }
 
         ExampleMatcher matcher = ExampleMatcher.matchingAll()
