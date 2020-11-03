@@ -4,6 +4,7 @@ import com.example.core.domain.dto.user.PostRegisterRequestDto;
 import com.example.core.domain.entity.User;
 import com.example.core.domain.exception.UserAlreadyExistsException;
 import com.example.core.domain.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,11 +15,9 @@ import java.util.Optional;
 
 @Service("userService")
 public class UserService implements IUserService {
+    @Autowired
     private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public void register(PostRegisterRequestDto dto) throws UserAlreadyExistsException {

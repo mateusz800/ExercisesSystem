@@ -116,7 +116,7 @@ POST@/register
 \textbf{Metoda}					& GET										\tabularnewline \hline
 \textbf{Endpoint}				& /topics									\tabularnewline \hline
 \textbf{Opis}					& Zwraca listę zagadnień matematyki			\tabularnewline \hline
-\textbf{Dostęp}					& Bez autoryzacji							\tabularnewline \hline
+\textbf{Dostęp}					& Wymagana autoryzacja							\tabularnewline \hline
 \textbf{Zwracane kody}	& -											\tabularnewline
 \bottomrule
 \end{longtable}
@@ -195,7 +195,7 @@ GET@/topics
 \textbf{Metoda}					& GET										\tabularnewline \hline
 \textbf{Endpoint}				& /exercises									\tabularnewline \hline
 \textbf{Opis}					& Zwraca listę zadań			\tabularnewline \hline
-\textbf{Dostęp}					& Bez autoryzacji							\tabularnewline \hline
+\textbf{Dostęp}					& Wymgaana autoryzacja							\tabularnewline \hline
 \textbf{Zwracane kody}	& -											\tabularnewline
 \bottomrule
 \end{longtable}
@@ -222,4 +222,42 @@ course				&  Nazwa tematyki, której mają dotyczyć ćwiczenia		&			-				\tabul
 GET@/exercises?course=trygonometria
 \end{lstlisting}
 
+### Udzielenie odpowiedzi
 
+\textbf{Podsumowanie}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{10cm}@{}}
+\toprule
+\endhead
+
+\textbf{Metoda}					& POST										\tabularnewline \hline
+\textbf{Endpoint}				& /exercises/{id}/answer									\tabularnewline \hline
+\textbf{Opis}					& Udzielenie odpowiedzi (popranwa/niepoprawna) na zadanie o danym id			\tabularnewline \hline
+\textbf{Dostęp}					& Wymagana autoryzacja						\tabularnewline \hline
+\textbf{Zwracane kody}	& -											\tabularnewline
+\bottomrule
+\end{longtable}
+\end{small}
+				
+\textbf{Parametry wejściowe}
+
+\begin{small}
+\begin{longtable}{@{}p{3cm}p{6cm}p{37mm}@{}}
+\toprule
+\endhead
+
+\textbf{Nazwa} 		& \textbf{Opis} 		& \textbf{Restrykcje} 	\tabularnewline \bottomrule
+isCorrect				&  Czy udzielona odpowiedż jest poprawna		&	Boolean		-				\tabularnewline
+\bottomrule
+\end{longtable}
+\end{small}
+
+\textbf{Przykładowe żądanie}
+
+\begin{lstlisting}[backgroundcolor=\color{gray},frame=single,basicstyle=\ttfamily]
+POST@/exercises/1/answer
+{
+  "isCorrect":true
+}
+\end{lstlisting}

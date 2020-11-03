@@ -11,7 +11,7 @@ import java.util.List;
 
 @Converter
 public class AnswerJsonToListConverter implements AttributeConverter<List<String>, String> {
-
+    // TODO: GET@/exercises causes JSONException: A JSONObject text must begin with '{' at 1 [character 2 line 1]
     @Override
     public String convertToDatabaseColumn(List<String> list) {
         return "{data: " + list.toString() + "}";
@@ -19,6 +19,7 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
 
     @Override
     public List<String> convertToEntityAttribute(String dbData) {
+        System.out.println(dbData);
         List<String> list = new ArrayList<>();
         JSONObject json;
         try {
@@ -27,10 +28,13 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
             jsonArray.iterator()
                     .forEachRemaining(answer -> {
                         JSONObject answerObj = new JSONObject(answer.toString());
+                        System.out.println(answerObj.get("answer"));
                         list.add((String) answerObj.get("answer"));
                     });
+
             return list;
         } catch (JSONException e) {
+            System.out.println(e);
             return null;
         }
     }
