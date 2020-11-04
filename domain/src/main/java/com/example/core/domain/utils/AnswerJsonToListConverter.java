@@ -30,7 +30,6 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
 
     @Override
     public List<String> convertToEntityAttribute(String dbData) {
-        System.out.println(dbData);
         List<String> list = new ArrayList<>();
         JSONObject json;
         try {

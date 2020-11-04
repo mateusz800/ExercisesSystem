@@ -23,8 +23,12 @@ public class ExerciseController {
     private ExerciseService exerciseService;
 
     @GetMapping(path = "/exercises")
-    public Page<?> getTopics(@PageableDefault(page = 0, size = 20) @SortDefault.SortDefaults({
+    public Page<?> getExercises(@PageableDefault(page = 0, size = 20) @SortDefault.SortDefaults({
             @SortDefault(sort = "id", direction = Sort.Direction.ASC)}) Pageable pageable, @Valid GetExerciseListDto inputDto) {
+
+        String userEmail = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        inputDto.setUserEmail(userEmail);
+
         Page<Exercise> exercises = exerciseService.filter(inputDto, pageable);
         Page<GetExerciseListDto> response = exercises
                 .map(exercise -> new GetExerciseListDto(
@@ -40,7 +44,6 @@ public class ExerciseController {
     @PostMapping(path="/exercise/{exerciseId}/answer")
     public ResponseEntity<?> answer(@RequestBody PostAnswerDto input, @PathVariable("exerciseId") Long exerciseId
             /*,TODO: @AuthenticationPrincipal User user  -- returns null*/){
-        System.out.println(input);
         String userEmail = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         try{
             exerciseService.makeAnswer(input.getIsCorrect(),exerciseId, userEmail);

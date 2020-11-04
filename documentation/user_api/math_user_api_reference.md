@@ -210,7 +210,7 @@ GET@/topics
 
 \textbf{Nazwa} 		& \textbf{Opis} 		& \textbf{Restrykcje} 	\tabularnewline \bottomrule
 course				&  Nazwa tematyki, której mają dotyczyć ćwiczenia		&			-				\tabularnewline
-	
+isSolved            & Pokazuj tylko rozwiązane/nierozwiązane ćwiczenia przez zalogowanego użytkownikas & tylko false działa	
 
 \bottomrule
 \end{longtable}
