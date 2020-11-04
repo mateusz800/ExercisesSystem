@@ -42,8 +42,14 @@ public class ExerciseService {
                 .withStringMatcher(ExampleMatcher.StringMatcher.STARTING)
                 .withIgnoreCase();
         Example<Exercise> example = Example.of(exercise, matcher);
-        if(input.getIsSolved() != null && !input.getIsSolved()){
-            return exerciseRepository.findAllUnsolved(example, pageable, input.getUserEmail());
+
+        if(input.getIsSolved() != null){
+            if(!input.getIsSolved()){
+                return exerciseRepository.findAllUnsolved(example, pageable, input.getUserEmail());
+            }
+            else{
+                return exerciseRepository.findAllSolved(example, pageable, input.getUserEmail());
+            }
         }
 
         return exerciseRepository.findAll(example, pageable);

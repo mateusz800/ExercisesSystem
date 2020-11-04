@@ -20,4 +20,11 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long>, Quer
                     " id NOT IN (SELECT exercise_id FROM math.answer WHERE correct = true  AND user_email = :#{#userEmail} ORDER BY ?#{#pageable}" )
     Page<Exercise> findAllUnsolved(Example<Exercise> example, Pageable pageable, String userEmail);
 
+    @Query(nativeQuery = true, value = "SELECT * FROM math.exercise WHERE " +
+            "topic_name = :#{#example.getProbe().getCourse().getName()} AND" +
+            " id IN (SELECT exercise_id FROM math.answer WHERE correct = true AND user_email = :#{#userEmail}) ORDER BY ?#{#pageable}",
+            countQuery ="SELECT count(*) FROM math.exercise WHERE " +
+                    "topic_name = :#{#example.getProbe().getCourse().getName()} AND" +
+                    " id IN (SELECT exercise_id FROM math.answer WHERE correct = true  AND user_email = :#{#userEmail} ORDER BY ?#{#pageable}" )
+    Page<Exercise> findAllSolved(Example<Exercise> example, Pageable pageable, String userEmail);
 }

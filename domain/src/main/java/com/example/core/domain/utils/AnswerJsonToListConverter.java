@@ -18,13 +18,18 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
         for(int i=0;i<list.size();i++){
             array.append("{\"answer\":");
             array.append("\"");
-            array.append(list.get(i));
+            String answer = list.get(i);
+            answer = answer.replace("\\", "\\\\");
+            System.out.println(answer);
+            array.append(answer);
+
             array.append("\"}");
             if(i != list.size() -1){
                 array.append(",");
             }
         }
         array.append("]");
+        System.out.println(array);
         return "{data: " + array.toString() + "}";
     }
 
