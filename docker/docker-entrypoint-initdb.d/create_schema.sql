@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS math.course (
 CREATE TABLE IF NOT EXISTS math.exercise (
     id SERIAL PRIMARY KEY,
     question TEXT NOT NULL UNIQUE,
-    correct_answers TEXT NOT NULL,
-    incorrect_answers TEXT,
+    correct_answers JSON NOT NULL,
+    incorrect_answers JSON,
     topic_name TEXT REFERENCES math.course(name),
     solution TEXT
 );

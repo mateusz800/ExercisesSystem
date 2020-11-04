@@ -10,4 +10,4 @@ INSERT INTO math.course (name, "desc", image) VALUES ('funkcje', 'Jakis opis', '
 
 -- exercises
 INSERT INTO math.exercise (question, correct_answers, incorrect_answers, topic_name, solution)
-    VALUES ('Jakieś pytanie', '{ "data":[{"answer":"poprawna odpowiedź"}]}', '{ "data":[{"answer":"odpowiedz 1, z przecinkiem"},{"answer":"odpowiedz 2"}]}', 'trygonometria', NULL);
+    VALUES ('Jakieś pytanie', '{ "data":{[{"answer":"poprawna odpowiedź"}]}}', '{ "data":{[{"answer":"odpowiedz 1, z przecinkiem"},{"answer":"odpowiedz 2"}]}}', 'trygonometria', NULL);
