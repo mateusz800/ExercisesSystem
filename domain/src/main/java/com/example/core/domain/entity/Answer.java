@@ -1,5 +1,7 @@
 package com.example.core.domain.entity;
 
+import com.example.core.domain.entity.user.User;
+
 import javax.persistence.*;
 
 @Entity

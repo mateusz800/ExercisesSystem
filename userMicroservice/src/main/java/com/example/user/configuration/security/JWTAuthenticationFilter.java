@@ -1,7 +1,8 @@
 package com.example.user.configuration.security;
 
 import com.example.core.domain.configuration.Configuration;
-import com.example.core.domain.entity.User;
+import com.example.core.domain.entity.user.Role;
+import com.example.core.domain.entity.user.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,8 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -45,9 +45,19 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse resp, FilterChain chain,
                                             Authentication authResult) throws IOException {
+        Map<String, Object> claims = new HashMap<>();
+        Set<String> userRoles = new HashSet<>();
+
         Date expirationDate = new Date(System.currentTimeMillis() + JWTSecurityConfiguration.EXPIRATION_INTERVAL);
         User user = (User) authResult.getPrincipal();
+
+        for(Role role:user.getRoles()){
+            userRoles.add(role.getName());
+        }
+        //claims.put("Roles", user.getAuthorities());
+        claims.put("Roles", userRoles.toArray());
         String token = Jwts.builder()
+                .setClaims(claims)
                 .setSubject(user.getLogin())
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, Configuration.getAuthKey().getBytes(StandardCharsets.UTF_8))

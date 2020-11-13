@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CourseRepository extends CrudRepository<Course, String> {
+public interface CourseRepository extends CrudRepository<Course, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM math.course ORDER BY ?#{#pageable}",
     countQuery = "SELECT count(*) FROM math.course")

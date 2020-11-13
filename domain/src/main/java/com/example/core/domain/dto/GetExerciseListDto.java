@@ -8,17 +8,22 @@ public class GetExerciseListDto {
     private String question;
     private List<String> correctAnswers;
     private List<String> otherAnswers;
-    private String course;
+    private Long courseId;
+    private String solution;
+
+    // TODO: remove variables below and make it work
     private Boolean isSolved;
     private String userEmail;
 
     public GetExerciseListDto(Long id, String question, List<String> correctAnswers, List<String> otherAnswers,
-                              String course) {
+                              Long courseId, String solution) {
         this.id = id;
         this.question = question;
         this.correctAnswers = correctAnswers;
         this.otherAnswers = otherAnswers;
-        this.course = course;
+        this.courseId = courseId;
+        this.solution = solution;
+
     }
 
     public String getQuestion() {
@@ -33,8 +38,8 @@ public class GetExerciseListDto {
         return otherAnswers;
     }
 
-    public String getCourse() {
-        return course;
+    public Long getCourseId() {
+        return courseId;
     }
 
     public Long getId() {
@@ -53,5 +58,8 @@ public class GetExerciseListDto {
 
     public String getUserEmail() {
         return userEmail;
+    }
+    public String getSolution(){
+        return solution;
     }
 }

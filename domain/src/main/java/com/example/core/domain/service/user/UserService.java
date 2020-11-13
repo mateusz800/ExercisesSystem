@@ -1,7 +1,7 @@
 package com.example.core.domain.service.user;
 
 import com.example.core.domain.dto.user.PostRegisterRequestDto;
-import com.example.core.domain.entity.User;
+import com.example.core.domain.entity.user.User;
 import com.example.core.domain.exception.UserAlreadyExistsException;
 import com.example.core.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

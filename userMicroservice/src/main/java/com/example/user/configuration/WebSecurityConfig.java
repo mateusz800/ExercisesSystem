@@ -45,12 +45,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/images/course/*.png").permitAll()
+               // .anyRequest().hasRole("student")
+                .anyRequest().hasAuthority("student");
 
 
-                .anyRequest().authenticated();
+                //.anyRequest().authenticated();
 
         httpSecurity
-                .addFilterBefore(new JWTAuthorizationFilter(authenticationManager()), JWTAuthorizationFilter.class)
+                .addFilterBefore(new JWTAuthorizationFilter(authenticationManager(), iUserService), JWTAuthorizationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(authenticationManager()), JWTAuthenticationFilter.class);
     }
 }

@@ -8,6 +8,8 @@ GRANT ALL PRIVILEGES ON DATABASE math to math;
 
 SET SESSION AUTHORIZATION math;
 
+
+
 BEGIN;
 DROP SCHEMA IF EXISTS math CASCADE;
 CREATE SCHEMA IF NOT EXISTS math;
@@ -16,7 +18,8 @@ CREATE SCHEMA IF NOT EXISTS math;
 -- Table math.course
 -- ------------------------------------------
 CREATE TABLE IF NOT EXISTS math.course (
-    name TEXT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
     "desc" TEXT,
     image TEXT
 );
@@ -28,7 +31,7 @@ CREATE TABLE IF NOT EXISTS math.exercise (
     question TEXT NOT NULL UNIQUE,
     correct_answers JSON NOT NULL,
     incorrect_answers JSON,
-    topic_name TEXT REFERENCES math.course(name),
+    course_id INT REFERENCES math.course(id),
     solution TEXT
 );
 -- ------------------------------------------
@@ -38,6 +41,20 @@ CREATE TABLE IF NOT EXISTS math.user (
     email VARCHAR(50) PRIMARY KEY,
     password TEXT NOT NULL,
     first_name VARCHAR(30)
+);
+-- ------------------------------------------
+-- Table math.role
+-- ------------------------------------------
+CREATE TABLE IF NOT EXISTS math.role (
+    name VARCHAR(30) PRIMARY KEY,
+    "desc" TEXT
+);
+-- ------------------------------------------
+-- Table math.user_role
+-- ------------------------------------------
+CREATE TABLE IF NOT EXISTS math.permissions (
+    user_email VARCHAR(50) NOT NULL REFERENCES math.user(email),
+    role_name VARCHAR(30) NOT NULL REFERENCES math.role(name)
 );
 -- ------------------------------------------
 -- Table math.answer

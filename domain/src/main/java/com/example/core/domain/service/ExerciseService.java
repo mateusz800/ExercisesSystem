@@ -4,7 +4,7 @@ import com.example.core.domain.dto.GetExerciseListDto;
 import com.example.core.domain.entity.Answer;
 import com.example.core.domain.entity.Course;
 import com.example.core.domain.entity.Exercise;
-import com.example.core.domain.entity.User;
+import com.example.core.domain.entity.user.User;
 import com.example.core.domain.exception.EntityNotFoundException;
 import com.example.core.domain.repository.AnswerRepository;
 import com.example.core.domain.repository.ExerciseRepository;
@@ -32,9 +32,9 @@ public class ExerciseService {
 
     public Page<Exercise> filter(GetExerciseListDto input, Pageable pageable) {
         Exercise exercise = new Exercise();
-        if(input.getCourse() != null){
+        if(input.getCourseId() != null){
             Course course = new Course();
-            course.setName(input.getCourse());
+            course.setId(input.getCourseId());
             exercise.setCourse(course);
         }
 

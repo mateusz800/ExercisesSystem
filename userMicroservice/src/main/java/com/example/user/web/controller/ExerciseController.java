@@ -28,6 +28,8 @@ public class ExerciseController {
 
         String userEmail = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         inputDto.setUserEmail(userEmail);
+        System.out.println("------------------------");
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 
         Page<Exercise> exercises = exerciseService.filter(inputDto, pageable);
         Page<GetExerciseListDto> response = exercises
@@ -36,7 +38,8 @@ public class ExerciseController {
                         exercise.getQuestion(),
                         exercise.getCorrectAnswers(),
                         exercise.getIncorrectAnswers(),
-                        exercise.getCourse().getName()
+                        exercise.getCourse().getId(),
+                        exercise.getSolution()
                 ));
         return response;
     }

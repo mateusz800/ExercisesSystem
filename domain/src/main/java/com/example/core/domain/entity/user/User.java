@@ -1,4 +1,4 @@
-package com.example.core.domain.entity;
+package com.example.core.domain.entity.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="user", schema = "math")
@@ -21,6 +22,13 @@ public class User implements UserDetails {
 
     @Column(name="first_name")
     private String firstName;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "permissions", joinColumns = {
+            @JoinColumn(name = "user_email") }, inverseJoinColumns = {
+            @JoinColumn(name = "role_name") })
+    private Set<Role> roles;
+
 
     public User(){}
 
@@ -38,7 +46,9 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("user"));
+        for(Role role : roles){
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
         return authorities;
     }
 
@@ -48,6 +58,14 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles(){
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles){
+        this.roles = roles;
     }
 
     @Override
@@ -74,5 +92,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 
 }

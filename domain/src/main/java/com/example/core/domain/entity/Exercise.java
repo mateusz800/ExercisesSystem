@@ -24,7 +24,7 @@ public class Exercise {
     private List<String> incorrectAnswers;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="topic_name")
+    @JoinColumn(name="course_id")
     private Course course;
 
     @Column(name="solution")
@@ -56,5 +56,9 @@ public class Exercise {
 
     public Long getId() {
         return id;
+    }
+
+    public String getSolution() {
+        return solution;
     }
 }
