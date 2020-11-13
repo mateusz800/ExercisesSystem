@@ -1,10 +1,10 @@
-package com.example.user.configuration;
+package com.example.teacherMicroservice.configuration;
 
 
+import com.example.core.domain.service.user.IUserService;
+import com.example.teacherMicroservice.component.MyBasicAuthenticationEntryPoint;
 import com.example.core.domain.configuration.security.JWTAuthenticationFilter;
 import com.example.core.domain.configuration.security.JWTAuthorizationFilter;
-import com.example.core.domain.service.user.IUserService;
-import com.example.user.component.MyBasicAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 
 @Configuration
 @EnableWebSecurity
@@ -37,16 +36,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf().disable()
                 .cors().disable()
-                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
+
                 // don't create session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 // allow unauthorized
-                .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/images/course/*.png").permitAll()
                // .anyRequest().hasRole("student")
-                .anyRequest().hasAuthority("student");
+                .anyRequest().hasAuthority("teacher");
 
 
                 //.anyRequest().authenticated();

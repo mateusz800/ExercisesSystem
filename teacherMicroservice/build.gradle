@@ -1,24 +1,33 @@
-plugins {
-	id 'org.springframework.boot' version '2.3.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
-}
-
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+buildscript {
+	ext { springBootVersion = '2.3.0.RELEASE' }
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-test {
-	useJUnitPlatform()
+sourceCompatibility = 1.11
+group 'com.example'
+version '1.0'
+repositories { mavenCentral() }
+
+dependencies {
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-security")
+	compile('org.springframework.boot:spring-boot-starter-mail')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile('com.google.guava:guava:23.6-jre')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile 'io.jsonwebtoken:jjwt:0.9.0'
+	compile project(path: ':domain')
 }
+

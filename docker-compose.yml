@@ -13,7 +13,7 @@ services:
     ports:
       - 5433:5432
 
-  user:
+  user_api:
     container_name: math_user_api
     build:
       context: ./docker
@@ -23,3 +23,14 @@ services:
       - "db"
     ports:
       - 8125:8080
+
+  teacher_api:
+    container_name: math_teacher_api
+    build:
+      context: ./docker
+      dockerfile: teacher_dockerfile
+    restart: always
+    depends_on:
+      - "db"
+    ports:
+      - 8126:8080

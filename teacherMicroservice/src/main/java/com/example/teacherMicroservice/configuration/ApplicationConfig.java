@@ -1,4 +1,4 @@
-package com.example.user.configuration;
+package com.example.teacherMicroservice.configuration;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @ComponentScan(basePackages = {
-        "com.example.user",
+        "com.example.teacherMicroservice",
         "com.example.core.domain.service",
         "com.example.core.domain.configuration.security"
 })

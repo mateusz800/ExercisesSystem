@@ -26,12 +26,22 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-validation")
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile("com.h2database:h2")
+
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile('com.google.guava:guava:23.6-jre')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile 'io.jsonwebtoken:jjwt:0.9.0'
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 	compile group: 'org.json', name: 'json', version: '20180813'
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.13'
 	testCompile('org.springframework.security:spring-security-test')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.boot:spring-boot-test-autoconfigure')
+
 }
 
 

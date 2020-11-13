@@ -1,4 +1,4 @@
-package com.example.user.configuration.security;
+package com.example.core.domain.configuration.security;
 
 public class JWTSecurityConfiguration {
     public static final long EXPIRATION_INTERVAL = 10 * 60 * 1000;
