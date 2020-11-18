@@ -1,5 +1,6 @@
 package com.example.teacherMicroservice.web.controller;
 
+import com.example.core.domain.dto.GetCourseDetailsWithExercisesDto;
 import com.example.core.domain.entity.Course;
 import com.example.core.domain.entity.user.User;
 import com.example.core.domain.service.CourseService;
@@ -11,12 +12,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 public class CourseController {
@@ -40,5 +44,22 @@ public class CourseController {
                         course.getName()
                 ));
         return response;
+    }
+
+    @GetMapping(path = "/courses/{courseId}")
+    public ResponseEntity<GetCourseDetailsWithExercisesDto> getCourseDetails(@PathVariable("courseId") Long courseId) {
+        Optional<Course> optional = courseService.findById(courseId);
+        if (optional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            Course course = optional.get();
+            return new ResponseEntity<GetCourseDetailsWithExercisesDto>(new GetCourseDetailsWithExercisesDto(
+                    course.getId(),
+                    course.getName(),
+                    course.getDesc(),
+                    course.getImage(),
+                    course.getExercises()),
+                    HttpStatus.OK);
+        }
     }
 }

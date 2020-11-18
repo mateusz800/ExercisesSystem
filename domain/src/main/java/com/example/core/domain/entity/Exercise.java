@@ -1,6 +1,7 @@
 package com.example.core.domain.entity;
 
 import com.example.core.domain.utils.AnswerJsonToListConverter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Exercise {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="course_id")
+    @JsonIgnore
     private Course course;
 
     @Column(name="solution")

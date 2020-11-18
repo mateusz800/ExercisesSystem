@@ -28,6 +28,9 @@ public class Course {
             @JoinColumn(name = "author_id") })
     private Set<User> authors;
 
+    @OneToMany(mappedBy = "course")
+    private Set<Exercise> exercises;
+
     public Course(){
 
     }
@@ -61,5 +64,9 @@ public class Course {
 
     public Set<User> getAuthors() {
         return authors;
+    }
+
+    public Set<Exercise> getExercises() {
+        return exercises;
     }
 }
