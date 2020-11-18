@@ -63,4 +63,12 @@ public class Exercise {
     public String getSolution() {
         return solution;
     }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setCorrectAnswers(List<String> correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
 }

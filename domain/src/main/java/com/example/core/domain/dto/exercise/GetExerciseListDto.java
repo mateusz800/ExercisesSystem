@@ -1,4 +1,4 @@
-package com.example.core.domain.dto;
+package com.example.core.domain.dto.exercise;
 
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class GetExerciseListDto {
 
     // TODO: remove variables below and make it work
     private Boolean isSolved;
-    private String userEmail;
+    private Long userId;
 
     public GetExerciseListDto(Long id, String question, List<String> correctAnswers, List<String> otherAnswers,
                               Long courseId, String solution) {
@@ -52,12 +52,12 @@ public class GetExerciseListDto {
     public void setIsSolved(Boolean isSolved){
         this.isSolved = isSolved;
     }
-    public void setUserEmail(String userEmail){
-        this.userEmail = userEmail;
+    public void setUserId(Long userId){
+        this.userId = userId;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public Long getUserEmail() {
+        return userId;
     }
     public String getSolution(){
         return solution;

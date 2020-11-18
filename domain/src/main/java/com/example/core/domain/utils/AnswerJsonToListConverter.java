@@ -20,7 +20,6 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
             array.append("\"");
             String answer = list.get(i);
             answer = answer.replace("\\", "\\\\");
-            System.out.println(answer);
             array.append(answer);
 
             array.append("\"}");
@@ -29,8 +28,7 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
             }
         }
         array.append("]");
-        System.out.println(array);
-        return "{data: " + array.toString() + "}";
+        return "{\"data\": " + array.toString() + "}";
     }
 
     @Override

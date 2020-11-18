@@ -1,9 +1,11 @@
 package com.example.user.web.controller;
 
-import com.example.core.domain.dto.GetExerciseListDto;
+import com.example.core.domain.dto.exercise.GetExerciseListDto;
 import com.example.core.domain.dto.PostAnswerDto;
 import com.example.core.domain.entity.Exercise;
+import com.example.core.domain.entity.user.User;
 import com.example.core.domain.service.ExerciseService;
+import com.example.core.domain.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,18 +18,23 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 public class ExerciseController {
     @Autowired
     private ExerciseService exerciseService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping(path = "/exercises")
     public Page<?> getExercises(@PageableDefault(page = 0, size = 20) @SortDefault.SortDefaults({
             @SortDefault(sort = "id", direction = Sort.Direction.ASC)}) Pageable pageable, @Valid GetExerciseListDto inputDto) {
 
         String userEmail = String.valueOf(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        inputDto.setUserEmail(userEmail);
+        User user = (User) userService.loadUserByUsername(userEmail);
+        inputDto.setUserId(user.getId());
 
         Page<Exercise> exercises = exerciseService.filter(inputDto, pageable);
         Page<GetExerciseListDto> response = exercises

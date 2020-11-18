@@ -37,7 +37,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter implements
             return;
         }
         try {
-            System.out.println("do filter");
             UsernamePasswordAuthenticationToken authentication = getAuthentication(request);
             if (authentication == null) {
                 SecurityContextHolder.clearContext();
