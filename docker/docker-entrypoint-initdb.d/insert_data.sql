@@ -13,7 +13,7 @@ INSERT INTO math.role (name, "desc") VALUES ('student', 'User of the mobile appl
 INSERT INTO math.role (name, "desc") VALUES ('teacher', 'Has access to creating new courses and exercises');
 
 -- permissions
-INSERT INTO math.permissions(user_email, role_name) VALUES ('u1@test.com', 'student');
+INSERT INTO math.permissions(user_id, role_name) VALUES (1, 'student');
 
 -- course
 INSERT INTO math.course (name, "desc", image) VALUES ('trygonometria', 'Jakis opis', 'http://192.168.1.69:8125/images/course/trygonometry.png');

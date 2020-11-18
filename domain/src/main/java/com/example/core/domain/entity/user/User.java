@@ -1,5 +1,6 @@
 package com.example.core.domain.entity.user;
 
+import com.example.core.domain.entity.Course;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,10 @@ import java.util.Set;
 @Table(name="user", schema = "math")
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long id;
+
     @Column(name="email")
     private String login;
 
@@ -25,9 +30,12 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "permissions", joinColumns = {
-            @JoinColumn(name = "user_email") }, inverseJoinColumns = {
+            @JoinColumn(name = "user_id") }, inverseJoinColumns = {
             @JoinColumn(name = "role_name") })
     private Set<Role> roles;
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Course> courses;
 
 
     public User(){}
@@ -58,6 +66,10 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setsRole(Set<Role> roles){
+        this.roles = roles;
     }
 
     public Set<Role> getRoles(){
@@ -94,5 +106,7 @@ public class User implements UserDetails {
     }
 
 
-
+    public Long getId() {
+        return id;
+    }
 }

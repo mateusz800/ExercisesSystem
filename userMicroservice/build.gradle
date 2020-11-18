@@ -1,21 +1,27 @@
 buildscript {
 	ext { springBootVersion = '2.3.0.RELEASE' }
 	repositories {
-		mavenCentral()
+		maven{url "https://plugins.gradle.org/m2/"}
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.asciidoctor:asciidoctor-gradle-jvm:2.4.0"
 	}
 }
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.asciidoctor.convert'
 
 sourceCompatibility = 1.11
 group 'com.example'
 version '1.0'
 repositories { mavenCentral() }
+
+
+
+
 
 dependencies {
 	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
@@ -29,5 +35,14 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile 'io.jsonwebtoken:jjwt:0.9.0'
 	compile project(path: ':domain')
+
+
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
+test {
+	useJUnitPlatform()
+}

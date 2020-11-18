@@ -16,7 +16,7 @@ public class Answer {
     private Exercise exercise;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_email")
+    @JoinColumn(name="user_id")
     private User user;
 
     @Column(name="correct")

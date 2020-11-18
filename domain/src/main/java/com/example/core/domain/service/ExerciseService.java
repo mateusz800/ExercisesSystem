@@ -8,7 +8,7 @@ import com.example.core.domain.entity.user.User;
 import com.example.core.domain.exception.EntityNotFoundException;
 import com.example.core.domain.repository.AnswerRepository;
 import com.example.core.domain.repository.ExerciseRepository;
-import com.example.core.domain.repository.UserRepository;
+import com.example.core.domain.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/images/course/*.png").permitAll()
                // .anyRequest().hasRole("student")
-                .anyRequest().hasAuthority("student");
+                .anyRequest().hasAnyAuthority("student", "teacher");
 
 
                 //.anyRequest().authenticated();

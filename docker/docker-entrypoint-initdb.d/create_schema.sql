@@ -15,6 +15,15 @@ DROP SCHEMA IF EXISTS math CASCADE;
 CREATE SCHEMA IF NOT EXISTS math;
 
 -- ------------------------------------------
+-- Table math.user
+-- ------------------------------------------
+CREATE TABLE IF NOT EXISTS math.user (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(50) NOT NULL,
+    password TEXT NOT NULL,
+    first_name VARCHAR(30)
+);
+-- ------------------------------------------
 -- Table math.course
 -- ------------------------------------------
 CREATE TABLE IF NOT EXISTS math.course (
@@ -26,6 +35,14 @@ CREATE TABLE IF NOT EXISTS math.course (
 -- ------------------------------------------
 -- Table math.exercise
 -- ------------------------------------------
+CREATE TABLE IF NOT EXISTS math.course_author (
+    course_id INT NOT NULL REFERENCES math.course(id),
+    author_id INT NOT NULL REFERENCES math.user(id)
+);
+-- TODO: unique index on course_id and author_id
+-- ------------------------------------------
+-- Table math.exercise
+-- ------------------------------------------
 CREATE TABLE IF NOT EXISTS math.exercise (
     id SERIAL PRIMARY KEY,
     question TEXT NOT NULL UNIQUE,
@@ -34,14 +51,7 @@ CREATE TABLE IF NOT EXISTS math.exercise (
     course_id INT REFERENCES math.course(id),
     solution TEXT
 );
--- ------------------------------------------
--- Table math.user
--- ------------------------------------------
-CREATE TABLE IF NOT EXISTS math.user (
-    email VARCHAR(50) PRIMARY KEY,
-    password TEXT NOT NULL,
-    first_name VARCHAR(30)
-);
+
 -- ------------------------------------------
 -- Table math.role
 -- ------------------------------------------
@@ -53,7 +63,7 @@ CREATE TABLE IF NOT EXISTS math.role (
 -- Table math.user_role
 -- ------------------------------------------
 CREATE TABLE IF NOT EXISTS math.permissions (
-    user_email VARCHAR(50) NOT NULL REFERENCES math.user(email),
+    user_id INT NOT NULL REFERENCES math.user(id),
     role_name VARCHAR(30) NOT NULL REFERENCES math.role(name)
 );
 -- ------------------------------------------
@@ -62,10 +72,10 @@ CREATE TABLE IF NOT EXISTS math.permissions (
 CREATE TABLE IF NOT EXISTS math.answer (
     id SERIAL PRIMARY KEY,
     exercise_id INT  NOT NULL REFERENCES math.exercise(id),
-    user_email TEXT  NOT NULL REFERENCES math.user(email),
+    user_id INT  NOT NULL REFERENCES math.user(id),
     correct BOOL NOT NULL
 );
 
--- TODO: unique index on exercise_id and user_email
+-- TODO: unique index on exercise_id and user_id
 
 END;

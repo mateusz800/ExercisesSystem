@@ -1,4 +1,4 @@
-package com.example.core.domain.repository;
+package com.example.core.domain.repository.user;
 
 import com.example.core.domain.entity.user.User;
 import org.springframework.data.jpa.repository.Query;
@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, String> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query(value="SELECT * FROM math.user WHERE email = ? ", nativeQuery = true)
     Optional<User> findByEmail(String email);
+
+
 }

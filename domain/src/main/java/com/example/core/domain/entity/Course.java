@@ -1,6 +1,10 @@
 package com.example.core.domain.entity;
 
+import com.example.core.domain.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -16,6 +20,13 @@ public class Course {
 
     @Column(name="image")
     private String image;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "course_author", joinColumns = {
+            @JoinColumn(name = "course_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "author_id") })
+    private Set<User> authors;
 
     public Course(){
 
@@ -46,5 +57,9 @@ public class Course {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<User> getAuthors() {
+        return authors;
     }
 }
