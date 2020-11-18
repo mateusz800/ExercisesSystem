@@ -4,6 +4,7 @@ import com.example.core.domain.entity.Exercise;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -29,6 +30,7 @@ public interface ExerciseRepository extends CrudRepository<Exercise, Long>, Quer
                     " id IN (SELECT exercise_id FROM math.answer WHERE correct = true  AND user_id = :#{#userId} ORDER BY ?#{#pageable}" )
     Page<Exercise> findAllSolved(Example<Exercise> example, Pageable pageable, Long userId);
 
+    @Modifying
     @Query(nativeQuery = true, value=" UPDATE math.exercise SET question = :question, correct_answers = CAST(:correctAnswers AS JSON), incorrect_answers = CAST(:incorrectAnswers AS JSON) WHERE id = :id")
     void update(@Param("id") Long id, @Param("question") String question, @Param("correctAnswers") String correctAnswers, @Param("incorrectAnswers") String incorrectAnswers);
 }

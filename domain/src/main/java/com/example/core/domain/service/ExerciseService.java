@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 
@@ -76,6 +77,7 @@ public class ExerciseService {
         return exerciseRepository.findById(id);
     }
 
+    @Transactional
     public void updateExercise(Long exerciseId, UpdateExerciseDto input) throws EntityNotFoundException {
         Optional<Exercise> optional = findById(exerciseId);
         if (optional.isEmpty()) {
@@ -94,13 +96,13 @@ public class ExerciseService {
             }
             System.out.println("------------------------------");
             System.out.println(converter.convertToDatabaseColumn(exercise.getCorrectAnswers()));
-            exerciseRepository.save(exercise);
-            /*
+            //exerciseRepository.save(exercise);
+
             exerciseRepository.update(exercise.getId(), exercise.getQuestion(),
                     converter.convertToDatabaseColumn(exercise.getCorrectAnswers()),
                     converter.convertToDatabaseColumn(exercise.getIncorrectAnswers()));
 
-             */
+
         }
     }
 }
