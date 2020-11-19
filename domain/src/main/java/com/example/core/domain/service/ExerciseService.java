@@ -1,5 +1,6 @@
 package com.example.core.domain.service;
 
+import com.example.core.domain.dto.exercise.CreateExerciseDto;
 import com.example.core.domain.dto.exercise.GetExerciseListDto;
 import com.example.core.domain.dto.exercise.UpdateExerciseDto;
 import com.example.core.domain.entity.Answer;
@@ -8,6 +9,7 @@ import com.example.core.domain.entity.Exercise;
 import com.example.core.domain.entity.user.User;
 import com.example.core.domain.exception.EntityNotFoundException;
 import com.example.core.domain.repository.AnswerRepository;
+import com.example.core.domain.repository.CourseRepository;
 import com.example.core.domain.repository.ExerciseRepository;
 import com.example.core.domain.repository.user.UserRepository;
 import com.example.core.domain.utils.AnswerJsonToListConverter;
@@ -32,6 +34,9 @@ public class ExerciseService {
 
     @Autowired
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     public Page<Exercise> filter(GetExerciseListDto input, Pageable pageable) {
         Exercise exercise = new Exercise();
@@ -101,8 +106,13 @@ public class ExerciseService {
             exerciseRepository.update(exercise.getId(), exercise.getQuestion(),
                     converter.convertToDatabaseColumn(exercise.getCorrectAnswers()),
                     converter.convertToDatabaseColumn(exercise.getIncorrectAnswers()));
-
-
         }
+    }
+
+    public void createExercise(CreateExerciseDto input) {
+        Exercise exercise = new Exercise(input.getQuestion(), input.getCorrectAnswers(), input.getIncorrectAnswers());
+        Course course = courseRepository.findById(input.getCourseId()).orElseThrow();
+        exercise.setCourse(course);
+        exerciseRepository.save(exercise);
     }
 }

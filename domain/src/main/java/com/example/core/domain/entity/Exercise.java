@@ -34,6 +34,13 @@ public class Exercise {
 
     public Exercise(){}
 
+    public Exercise(String question, List<String> correctAnswers, List<String> incorrectAnswers){
+        this.question = question;
+        this.correctAnswers = correctAnswers;
+        this.incorrectAnswers = incorrectAnswers;
+        this.course = course;
+    }
+
     public String getQuestion(){
         return this.question;
     }

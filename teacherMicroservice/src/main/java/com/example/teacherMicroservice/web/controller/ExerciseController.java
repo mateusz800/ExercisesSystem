@@ -2,6 +2,7 @@ package com.example.teacherMicroservice.web.controller;
 
 import com.example.core.domain.dto.GetCourseDetailsWithExercisesDto;
 import com.example.core.domain.dto.GetCoursesListByAuthorDto;
+import com.example.core.domain.dto.exercise.CreateExerciseDto;
 import com.example.core.domain.dto.exercise.UpdateExerciseDto;
 import com.example.core.domain.entity.Course;
 import com.example.core.domain.entity.Exercise;
@@ -38,7 +39,12 @@ public class ExerciseController {
         } catch (EntityNotFoundException e) {
            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
+    }
 
+    @PostMapping(path ="/exercises")
+    public ResponseEntity<?> addNewExercise(@RequestBody CreateExerciseDto inputDto){
+        exerciseService.createExercise(inputDto);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

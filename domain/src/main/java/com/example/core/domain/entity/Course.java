@@ -32,13 +32,8 @@ public class Course {
     private Set<Exercise> exercises;
 
     public Course(){
-
     }
 
-    public Course(String name, String desc){
-        this.name = name;
-        this.desc = desc;
-    }
 
     public String getName(){
         return this.name;
