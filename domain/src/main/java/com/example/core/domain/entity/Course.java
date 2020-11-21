@@ -15,7 +15,7 @@ public class Course {
     @Column(name="name", nullable = false)
     private String name;
 
-    @Column(name="desc")
+    @Column(name="description")
     private String desc;
 
     @Column(name="image")
@@ -36,13 +36,13 @@ public class Course {
 
 
     public String getName(){
-        return this.name;
+        return name;
     }
     public String getDesc(){
-        return this.desc;
+        return desc;
     }
     public String getImage(){
-        return this.image;
+        return image;
     }
 
     public void setName(String name) {
@@ -63,5 +63,13 @@ public class Course {
 
     public Set<Exercise> getExercises() {
         return exercises;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setAuthors(Set<User> authors) {
+        this.authors = authors;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.core.domain.dto;
+package com.example.core.domain.dto.course;
 
 import com.example.core.domain.entity.user.User;
 

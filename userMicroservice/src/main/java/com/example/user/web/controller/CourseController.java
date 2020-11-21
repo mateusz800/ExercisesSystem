@@ -1,9 +1,8 @@
 package com.example.user.web.controller;
 
-import com.example.core.domain.dto.GetCourseDetailsDto;
-import com.example.core.domain.dto.GetCoursesListDto;
+import com.example.core.domain.dto.course.GetCourseDetailsDto;
+import com.example.core.domain.dto.course.GetCoursesListDto;
 import com.example.core.domain.entity.Course;
-import com.example.core.domain.entity.user.User;
 import com.example.core.domain.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.Optional;
 
 @RestController

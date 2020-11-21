@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS math.user (
 CREATE TABLE IF NOT EXISTS math.course (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    "desc" TEXT,
+    description TEXT,
     image TEXT
 );
 -- ------------------------------------------

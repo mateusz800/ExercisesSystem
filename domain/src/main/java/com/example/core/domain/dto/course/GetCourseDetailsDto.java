@@ -1,4 +1,4 @@
-package com.example.core.domain.dto;
+package com.example.core.domain.dto.course;
 
 public class GetCourseDetailsDto {
     private Long id;

@@ -1,10 +1,11 @@
 package com.example.teacherMicroservice.web.controller;
 
-import com.example.core.domain.dto.GetCourseDetailsWithExercisesDto;
+import com.example.core.domain.dto.course.CreateCourseDto;
+import com.example.core.domain.dto.course.GetCourseDetailsWithExercisesDto;
 import com.example.core.domain.entity.Course;
 import com.example.core.domain.entity.user.User;
 import com.example.core.domain.service.CourseService;
-import com.example.core.domain.dto.GetCoursesListByAuthorDto;
+import com.example.core.domain.dto.course.GetCoursesListByAuthorDto;
 import com.example.core.domain.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,10 +16,7 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -62,5 +60,12 @@ public class CourseController {
                     course.getExercises()),
                     HttpStatus.OK);
         }
+    }
+
+    @PostMapping(path = "/courses")
+    public ResponseEntity<?> createNewCourse(@RequestBody CreateCourseDto inputDto){
+        User author = (User) userService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+        courseService.createNewCourse(inputDto, author);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

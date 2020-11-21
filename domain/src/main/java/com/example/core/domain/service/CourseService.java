@@ -1,9 +1,9 @@
 package com.example.core.domain.service;
 
-import com.example.core.domain.dto.GetCoursesListByAuthorDto;
-import com.example.core.domain.dto.GetCoursesListDto;
+import com.example.core.domain.dto.course.CreateCourseDto;
+import com.example.core.domain.dto.course.GetCoursesListByAuthorDto;
+import com.example.core.domain.dto.course.GetCoursesListDto;
 import com.example.core.domain.entity.Course;
-import com.example.core.domain.entity.Exercise;
 import com.example.core.domain.entity.user.User;
 import com.example.core.domain.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,9 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.Optional;
 
 
@@ -44,6 +45,17 @@ public class CourseService {
 
     public Optional<Course> findById(Long id) {
         return courseRepository.findById(id);
+    }
+
+    @Transactional
+    public void createNewCourse(CreateCourseDto input, User user) {
+        Course course = new Course();
+        course.setName(input.getName());
+        if(input.getDesc() != null){
+            course.setDesc(input.getDesc());
+        }
+        course.setAuthors(Collections.singleton(user));
+        courseRepository.save(course);
     }
 }
 

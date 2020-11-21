@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface CourseRepository extends CrudRepository<Course, Long>, QueryByExampleExecutor<Course> {
 
     @Query(nativeQuery = true,
-            value = "SELECT * FROM math.course WHERE id = (SELECT course_id FROM math.course_author WHERE author_id = ?1) ORDER BY ?#{#pageable}",
-            countQuery = "SELECT COUNT(*) FROM math.course WHERE id = (SELECT course_id FROM math.course_author WHERE author_id = ?1) ORDER BY ?#{#pageable}")
+            value = "SELECT * FROM math.course WHERE id IN (SELECT course_id FROM math.course_author WHERE author_id = ?1) ORDER BY ?#{#pageable}",
+            countQuery = "SELECT COUNT(*) FROM math.course WHERE id IN (SELECT course_id FROM math.course_author WHERE author_id = ?1) ORDER BY ?#{#pageable}")
     Page<Course> findByAuthor(Long authorId, Pageable pageable);
 }
