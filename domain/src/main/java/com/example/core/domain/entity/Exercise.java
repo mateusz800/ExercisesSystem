@@ -2,9 +2,13 @@ package com.example.core.domain.entity;
 
 import com.example.core.domain.utils.AnswerJsonToListConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Exercise {
@@ -31,6 +35,13 @@ public class Exercise {
 
     @Column(name="solution")
     private String solution;
+
+
+    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL,  orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Answer> givenAnswers;
+
+
 
     public Exercise(){}
 
@@ -77,5 +88,9 @@ public class Exercise {
 
     public void setCorrectAnswers(List<String> correctAnswers) {
         this.correctAnswers = correctAnswers;
+    }
+
+    public void setGivenAnswers(HashSet<Answer> answers) {
+        this.givenAnswers = answers;
     }
 }

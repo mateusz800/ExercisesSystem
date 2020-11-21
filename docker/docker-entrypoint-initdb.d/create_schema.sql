@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS math.exercise (
     question TEXT NOT NULL UNIQUE,
     correct_answers TEXT NOT NULL,
     incorrect_answers TEXT,
-    course_id INT REFERENCES math.course(id),
+    course_id INT REFERENCES math.course(id) ON DELETE CASCADE,
     solution TEXT
 );
 

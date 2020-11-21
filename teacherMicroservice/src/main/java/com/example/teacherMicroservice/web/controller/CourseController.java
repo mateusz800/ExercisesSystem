@@ -4,6 +4,7 @@ import com.example.core.domain.dto.course.CreateCourseDto;
 import com.example.core.domain.dto.course.GetCourseDetailsWithExercisesDto;
 import com.example.core.domain.entity.Course;
 import com.example.core.domain.entity.user.User;
+import com.example.core.domain.exception.EntityNotFoundException;
 import com.example.core.domain.service.CourseService;
 import com.example.core.domain.dto.course.GetCoursesListByAuthorDto;
 import com.example.core.domain.service.user.UserService;
@@ -59,6 +60,16 @@ public class CourseController {
                     course.getImage(),
                     course.getExercises()),
                     HttpStatus.OK);
+        }
+    }
+
+    @DeleteMapping(path="/courses/{courseId}")
+    public ResponseEntity<?> deleteCourse(@PathVariable("courseId") Long courseId){
+        try {
+            courseService.removeCourse(courseId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -2,6 +2,8 @@ package com.example.core.domain.entity;
 
 import com.example.core.domain.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -28,7 +30,8 @@ public class Course {
             @JoinColumn(name = "author_id") })
     private Set<User> authors;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL,  orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Exercise> exercises;
 
     public Course(){

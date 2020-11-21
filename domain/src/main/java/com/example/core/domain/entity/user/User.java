@@ -1,5 +1,6 @@
 package com.example.core.domain.entity.user;
 
+import com.example.core.domain.entity.Answer;
 import com.example.core.domain.entity.Course;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,6 +37,9 @@ public class User implements UserDetails {
 
     @ManyToMany(mappedBy = "authors")
     private Set<Course> courses;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Answer> givenAnswers;
 
 
     public User(){}
@@ -108,5 +112,13 @@ public class User implements UserDetails {
 
     public Long getId() {
         return id;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }

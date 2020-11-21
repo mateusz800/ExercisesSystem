@@ -21,7 +21,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Service
@@ -60,6 +62,7 @@ public class ExerciseService {
         return exerciseRepository.findAll(example, pageable);
     }
 
+    @Transactional
     public void makeAnswer(Boolean isCorrect, Long exerciseId, String userEmail) throws EntityNotFoundException {
         Answer answer = new Answer();
         answer.setIsCorrect(isCorrect);
@@ -109,10 +112,22 @@ public class ExerciseService {
         }
     }
 
+    @Transactional
     public void createExercise(CreateExerciseDto input) {
         Exercise exercise = new Exercise(input.getQuestion(), input.getCorrectAnswers(), input.getIncorrectAnswers());
         Course course = courseRepository.findById(input.getCourseId()).orElseThrow();
         exercise.setCourse(course);
         exerciseRepository.save(exercise);
+    }
+
+    @Transactional
+    public void removeExercise(Long exerciseId) throws EntityNotFoundException {
+        Optional<Exercise> optional = exerciseRepository.findById(exerciseId);
+        if(optional.isEmpty()){
+            throw new EntityNotFoundException();
+        }
+        Exercise exercise = optional.get();
+        exercise.setGivenAnswers(new HashSet<Answer>());
+        exerciseRepository.delete(exercise);
     }
 }
