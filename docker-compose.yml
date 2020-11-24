@@ -1,13 +1,14 @@
 version: '3.8'
 
 services:
+
   db:
     container_name: math_db
     build:
       context: ./docker
-      dockerfile: db_dockerfile
+      dockerfile: Dockerfile.db
     restart: always
-    environment: 
+    environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: bVhDX2XcgwEatQ6djUNKLm786wguSjpm
     ports:
@@ -17,7 +18,7 @@ services:
     container_name: math_user_api
     build:
       context: ./docker
-      dockerfile: user_dockerfile
+      dockerfile: Dockerfile.userApi
     restart: always
     depends_on:
       - "db"
@@ -28,7 +29,7 @@ services:
     container_name: math_teacher_api
     build:
       context: ./docker
-      dockerfile: teacher_dockerfile
+      dockerfile: Dockerfile.teacherApi
     restart: always
     depends_on:
       - "db"

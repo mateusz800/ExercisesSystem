@@ -25,7 +25,7 @@ public class ExerciseController {
         }
     }
 
-    @DeleteMapping(path ="exercises/{exerciseId")
+    @DeleteMapping(path ="exercises/{exerciseId}")
     public ResponseEntity<?> deleteExercise(@PathVariable("exerciseId") Long exerciseId){
         try {
             exerciseService.removeExercise(exerciseId);

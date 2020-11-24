@@ -5,6 +5,8 @@ public class CreateCourseDto {
     private String desc;
     private String imageUrl;
 
+    public CreateCourseDto(){}
+
     public CreateCourseDto(String name, String desc){
         this.name = name;
         this.desc = desc;

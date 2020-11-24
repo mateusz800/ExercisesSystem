@@ -1,4 +1,4 @@
-package com.example.core.domain.dto;
+package com.example.core.domain.dto.exercise;
 
 public class PostAnswerDto {
     private Boolean isCorrect;

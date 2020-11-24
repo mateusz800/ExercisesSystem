@@ -1,5 +1,6 @@
 package com.example.core.domain.dto.exercise;
 
+import com.example.core.domain.dto.course.CreateCourseDto;
 import com.example.core.domain.entity.Course;
 
 import java.util.List;
@@ -9,6 +10,8 @@ public class CreateExerciseDto {
     private  List<String> correctAnswers;
     private  List<String> incorrectAnswers;
     private Long courseId;
+
+    public CreateExerciseDto(){}
 
     public CreateExerciseDto(String question, List<String> correctAnswers, List<String> incorrectAnswers, Long courseId) {
         this.question = question;

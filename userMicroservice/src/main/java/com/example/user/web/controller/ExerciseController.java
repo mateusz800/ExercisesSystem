@@ -1,7 +1,7 @@
 package com.example.user.web.controller;
 
 import com.example.core.domain.dto.exercise.GetExerciseListDto;
-import com.example.core.domain.dto.PostAnswerDto;
+import com.example.core.domain.dto.exercise.PostAnswerDto;
 import com.example.core.domain.entity.Exercise;
 import com.example.core.domain.entity.user.User;
 import com.example.core.domain.service.ExerciseService;
@@ -18,7 +18,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 public class ExerciseController {
