@@ -43,7 +43,8 @@ public class ExerciseController {
                         exercise.getCorrectAnswers(),
                         exercise.getIncorrectAnswers(),
                         exercise.getCourse().getId(),
-                        exercise.getSolution()
+                        exercise.getSolution(),
+                        exercise.getImage()
                 ));
         return response;
     }

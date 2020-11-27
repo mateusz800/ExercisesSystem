@@ -36,6 +36,9 @@ public class Exercise {
     @Column(name="solution")
     private String solution;
 
+    @Column(name="image")
+    private String image;
+
 
     @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL,  orphanRemoval = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -92,5 +95,9 @@ public class Exercise {
 
     public void setGivenAnswers(HashSet<Answer> answers) {
         this.givenAnswers = answers;
+    }
+
+    public String getImage(){
+        return image;
     }
 }

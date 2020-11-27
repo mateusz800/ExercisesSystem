@@ -10,19 +10,21 @@ public class GetExerciseListDto {
     private List<String> otherAnswers;
     private Long courseId;
     private String solution;
+    private String image;
 
     // TODO: remove variables below and make it work
     private Boolean isSolved;
     private Long userId;
 
     public GetExerciseListDto(Long id, String question, List<String> correctAnswers, List<String> otherAnswers,
-                              Long courseId, String solution) {
+                              Long courseId, String solution, String image) {
         this.id = id;
         this.question = question;
         this.correctAnswers = correctAnswers;
         this.otherAnswers = otherAnswers;
         this.courseId = courseId;
         this.solution = solution;
+        this.image = image;
 
     }
 
@@ -61,5 +63,9 @@ public class GetExerciseListDto {
     }
     public String getSolution(){
         return solution;
+    }
+
+    public String getImage(){
+        return image;
     }
 }

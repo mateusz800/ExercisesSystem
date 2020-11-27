@@ -33,6 +33,9 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
 
     @Override
     public List<String> convertToEntityAttribute(String dbData) {
+        if(dbData == null || dbData.equals("")){
+            return new ArrayList<String>();
+        }
         List<String> list = new ArrayList<>();
         JSONObject json;
         try {
@@ -41,7 +44,7 @@ public class AnswerJsonToListConverter implements AttributeConverter<List<String
             jsonArray.iterator()
                     .forEachRemaining(answer -> {
                         JSONObject answerObj = new JSONObject(answer.toString());
-                        list.add((String) answerObj.get("answer"));
+                        list.add(answerObj.get("answer").toString());
                     });
 
             return list;

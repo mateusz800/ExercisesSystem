@@ -9,6 +9,8 @@ public class UpdateExerciseDto {
     private  List<String> correctAnswers;
     private  List<String> incorrectAnswers;
 
+    public UpdateExerciseDto() {}
+
     public UpdateExerciseDto(String question, List<String> correctAnswers, List<String> incorrectAnswers) {
         this.question = question;
         this.correctAnswers = correctAnswers;
