@@ -72,11 +72,9 @@ CREATE TABLE IF NOT EXISTS math.permissions (
 -- ------------------------------------------
 CREATE TABLE IF NOT EXISTS math.answer (
     id SERIAL PRIMARY KEY,
-    exercise_id INT  NOT NULL REFERENCES math.exercise(id),
+    exercise_id INT  REFERENCES math.exercise(id) ON DELETE CASCADE,
     user_id INT  NOT NULL REFERENCES math.user(id),
     correct BOOL NOT NULL
 );
-
--- TODO: unique index on exercise_id and user_id
 
 END;

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name="course", schema = "math")
 public class Course {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class Course {
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "course_author", joinColumns = {
+    @JoinTable(name = "course_author", schema = "math", joinColumns = {
             @JoinColumn(name = "course_id") }, inverseJoinColumns = {
             @JoinColumn(name = "author_id") })
     private Set<User> authors;

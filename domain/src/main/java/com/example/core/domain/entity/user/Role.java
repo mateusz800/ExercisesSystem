@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name="role", schema = "math")
 public class Role {
     @Id
     @Column(name="name")

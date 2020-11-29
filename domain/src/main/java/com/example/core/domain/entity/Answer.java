@@ -5,6 +5,7 @@ import com.example.core.domain.entity.user.User;
 import javax.persistence.*;
 
 @Entity
+@Table(name="answer", schema = "math")
 public class Answer {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

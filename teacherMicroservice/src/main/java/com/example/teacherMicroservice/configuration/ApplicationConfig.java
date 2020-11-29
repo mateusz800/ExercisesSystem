@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {
         "com.example.teacherMicroservice",
         "com.example.core.domain.service",
-        "com.example.core.domain.configuration.security"
+        "com.example.core.domain.configuration"
 })
 @EntityScan(basePackages = "com.example.core.domain.entity")
 @EnableJpaRepositories(basePackages = "com.example.core.domain.repository")
