@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    container_name: math_teacher_pannel
+    build:
+      context: app
+      dockerfile: Dockerfile
+    restart: always
+    ports: 
+      - "3000:3000"
