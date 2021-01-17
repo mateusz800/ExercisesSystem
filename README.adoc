@@ -1,0 +1,9 @@
+= Exercise System
+
+== About project
+
+The goal of the project was implementing system for support user in learning math. The system provides close-ended questions (with one or multiple correct answers) and open-ended questions, where user have to give only correct answer. This repositorium consists of an *REST API* and *Teacher Panel* for adding new courses with exercises to the system. API was divided into _UserAPI_, which consists functions that should be available only for user that use outside application (e.g mobile app), and _TeacherAPI_ that offers functions for managing content (uses in _Teacher Panel_).
+
+=== Technology used
+API was developed using *Java* and *Spring-boot* framework. +
+Teacher Panel uses *Javascript* with *React*.
