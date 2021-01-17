@@ -59,3 +59,31 @@ INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_
 
 INSERT INTO math.exercise (question, correct_answers, course_id)
     VALUES ('$ tg\alpha ctg\alpha $ jest równe','{"data": [{"answer":1}]}','1');
+
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_id)
+    VALUES ('Równanie 2$x^2$ - 4$x$ - 3 = 0:','{"data": [{"answer":"ma dwa rozwiązania"}]}',
+	'{"data": [{"answer":"nie ma rozwiązań"},{"answer":"ma jedno rozwiązanie"},{"answer":"ma nieskończenie wiele rozwiązań"}]}',9);
+
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_id)
+    VALUES ('Liczba rozwiązań równania $\frac{x^2-5}{5-x}$ = 0, to:','{"data": [{"answer":"2"}]}',
+    '{"data": [{"answer":"0"},{"answer":"1"},{"answer":"3"}]}',9);
+
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_id)
+    VALUES ('Średnia arytmetyczna siedmiu liczb jest równa 3. Po dołączeniu do nich liczby 11 średnia arytmetyczna tych liczb będzie równa:',
+	'{"data": [{"answer":"4"}]}','{"data": [{"answer":"6"},{"answer":"3"},{"answer":"10"}]}',9);
+
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_id)
+    VALUES ('Rozwiązaniem równania$\frac{3}{2x-1}$ = 2 jest liczba:','{"data": [{"answer":"1,25"}]}',
+	'{"data": [{"answer":"0,5"},{"answer":"-1,25"},{"answer":"1,2"}]}',9);
+
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_id)
+    VALUES ('Zbiorem rozwiązań nierówności 2$x^2$ - 8 $>$ 0 jest:','{"data": [{"answer":"(-$\\infty$, -2)u(2, +$\\infty$)"}]}',
+    '{"data": [{"answer":"(-$\\infty$, -2$>$u$<$2, +$\\infty$)"},{"answer":"(-2, 2)"},{"answer":"$<$-2, 2$>$"}]}',9);
+
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_id)
+    VALUES ('Największa liczba naturalna spełniająca nierówność $\frac{n+15}{n}$ $>$ 3, to:',
+	'{"data": [{"answer":"7"}]}','{"data": [{"answer":"8"},{"answer":"6"},{"answer":"nie istnieje"}]}',9);
+
+INSERT INTO math.exercise (question, correct_answers, incorrect_answers, course_id)
+    VALUES ('Rozwiązaniem równania $x^2+x=(x+1)^2-7(x+2)$ jest liczba:','{"data": [{"answer":"$-\\frac{13}{6}$"}]}',
+    '{"data": [{"answer":"$-\\frac{13}{8}$"},{"answer":"$\\frac{15}{8}$"},{"answer":"$\\frac{15}{6}$"}]}',9);
